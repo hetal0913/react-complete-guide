@@ -1,20 +1,21 @@
+import Card from "../UI/Card";
 import ExpenseItem from "./ExpenseItem";
-import './EXpenses.css'
+import './Expenses.css'
 
 const Expenses = ({expenses}) => {
     const allExpenses = expenses.length ? (
         expenses.map((item) => {
             return (
-                <ExpenseItem expense={item} />
+                <ExpenseItem expense={item} key={item.id}/>
             )
         })
     ) : (
         <p>You don't have any expenses</p>
     )
     return ( 
-        <div className="expenses">
+        <Card className="expenses">
            {allExpenses}
-        </div>
+        </Card>
      );
 }
  
