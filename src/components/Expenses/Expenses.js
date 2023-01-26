@@ -5,19 +5,24 @@ import './Expenses.css'
 import { useState } from "react";
 
 const Expenses = ({expenses}) => {
-    const [filteredYear, setFilteredYear] = useState('2020');
+    const [filteredYear, setFilteredYear] = useState('2023');
 
     const filterChangeHandler = selectedYear => {
       setFilteredYear(selectedYear);
     };
-    const allExpenses = expenses.length ? (
-        expenses.map((item) => {
+
+    const filteredExpenses = expenses.filter(expense => expense.date.getFullYear().toString() === filteredYear);
+
+    console.log(filteredExpenses);
+
+    const allExpenses = filteredExpenses.length ? (
+        filteredExpenses.map((item) => {
             return (
                 <ExpenseItem expense={item} key={item.id}/>
             )
         })
     ) : (
-        <p>You don't have any expenses</p>
+        <p className="expenses-list__fallback">You don't have any expenses</p>
     )
     return (
         <div>
